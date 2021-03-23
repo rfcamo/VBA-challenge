@@ -131,15 +131,15 @@ Dim maxticker As String
 
 maxpercent = 0.001
 
-For k = 1 To formatrowcount
-    If (Cells(k, 11).Value <> "NA") Then
-        If (Cells(k, 11).Value > maxpercent) Then
-            maxpercent = Cells(k + 1, 11).Value
-            maxticker = Cells(k, 9).Value
+For r = 1 To formatrowcount
+    If (Cells(r, 11).Value <> "NA") Then
+        If (Cells(r, 11).Value > maxpercent) Then
+            maxpercent = Cells(r + 1, 11).Value
+            maxticker = Cells(r, 9).Value
         End If
-    ElseIf (Cells(k, 11).Value = "NA") Then
+    ElseIf (Cells(r, 11).Value = "NA") Then
     End If
-Next k
+Next r
 
 'Print values to table for greatest % increase
 [O2] = maxticker
@@ -151,12 +151,12 @@ Dim minticker As String
 
 minpercent = 0
 
-For m = 2 To formatrowcount
-    If (Cells(m, 11).Value < minpercent) Then
-        minpercent = Cells(m, 11).Value
-        minticker = Cells(m, 9).Value
+For a = 2 To formatrowcount
+    If (Cells(a, 11).Value < minpercent) Then
+        minpercent = Cells(a, 11).Value
+        minticker = Cells(a, 9).Value
     End If
-Next m
+Next a
 
 'Return values to greatest % increase table
 [O3] = minticker
@@ -168,18 +168,18 @@ Dim maxvolticker As String
 
 maxvolume = 1
 
-For n = 2 To formatrowcount
-    If (Cells(n, 12).Value > maxvolume) Then
-        maxvolume = Cells(n, 12).Value
-        maxvolticker = Cells(n, 9).Value
+For y = 2 To formatrowcount
+    If (Cells(y, 12).Value > maxvolume) Then
+        maxvolume = Cells(y, 12).Value
+        maxvolticker = Cells(y, 9).Value
     End If
-Next n
+Next y
 
-'Print greatest total volume to table
+'Print highest total volume to table
 [O4] = maxvolticker
 [P4] = maxvolume
 
-'Update formatting for Greatest Inc, Dec and Total Vol
+'Update formatting for highest Inc, Total Vol, and Dec
 Range("P2:P3").NumberFormat = "0.00%"
 Range("O2:P4").Font.Bold = False
 Range("P4").NumberFormat = "###,###,###,#00"
